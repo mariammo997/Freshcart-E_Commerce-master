@@ -1,0 +1,64 @@
+
+<div class="container">
+
+	<section class="bg-main-light  p-2 my-2 rounded-4 mt-5 ">
+    <h2 class="h4 mt-3">Login Now...</h2>
+		<form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+
+
+      <div class="my-2">
+          <label for="email">Email</label>
+					<input type="email" formControlName="email" class="input form-control " placeholder="email" #input>
+					@if (loginForm.get('email')?.errors && (loginForm.get('email')?.touched ||
+					loginForm.get('email')?.dirty )) {
+					<div class="alert alert-danger w-25">
+						@if (loginForm.get('email')?.getError('required') ){
+						<p class="m-0">email is required</p>
+						}
+						@else if (loginForm.get('ememail pattern is inavalidail')?.getError('email')) {
+						<p class="m-0">email pattern is inavalid</p>
+						}
+					</div>
+					}
+			</div>
+
+
+
+			<div class="my-2">
+        <label for="name">Password</label>
+					<input type="password" formControlName="password" class="input form-control" placeholder="password"
+						#input>
+					@if (loginForm.get('password')?.errors&& loginForm.get('password')?.touched ) {
+					<div class="alert alert-danger w-75 mt-1">
+						@if (loginForm.get('password')?.getError('required') ){
+						<p class="m-0">Password is requierd</p>
+						}
+						@else if (loginForm.get('password')?.getError('pattern')) {
+						<p class="m-0">Must be six characters at least</p>
+						}
+					</div>
+					}
+
+			</div>
+			<a class="mt-5 " routerLink="/forgot">Forgot Password?</a>
+
+			<input type="submit" class="btn-main d-block ms-auto " value="Login">
+
+			@if (isFailed) {
+			<div class="alert alert-danger">
+				<p class="m-0">"Incorrect email or password"
+				</p>
+			</div>
+			}
+
+
+			@if (isSuccess) {
+			<div class="alert alert-success">
+				<p class="m-0">"Login success"</p>
+			</div>
+
+			}
+
+		</form>
+	</section>
+</div>
